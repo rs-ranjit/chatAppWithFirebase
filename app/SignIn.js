@@ -16,12 +16,14 @@ import {
 import Octicons from "@expo/vector-icons/Octicons";
 import { useRouter } from "expo-router";
 import Loading from "../components/Loading";
+import { useAuth } from "../context/authContext";
 
 const SignIn = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const emailRef = useRef("");
   const passwordRef = useRef("");
+  const { login } = useAuth();
 
   const handleLogin = async () => {
     if (!emailRef.current || !passwordRef) {
@@ -29,7 +31,13 @@ const SignIn = () => {
       return;
     }
 
-    //Login Process
+    setLoading(true);
+    const response = await login(emailRef.current, passwordRef.current);
+    setLoading(false);
+    console.log("Sign in response", response.msg);
+    if (!response.success) {
+      Alert.alert("Sign In", response.msg);
+    }
   };
 
   return (
