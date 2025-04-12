@@ -9,16 +9,16 @@ import ChatList from "../../components/ChatList";
 import Loading from "../../components/Loading";
 import { userRef } from "../../firebaseConfig";
 import { getDocs, orderBy, query, where } from "firebase/firestore";
+import Header from "../../components/HomeHeader";
 
 const HomeScreen = () => {
   const { logout, user } = useAuth();
   const [users, setUser] = useState([]);
   useEffect(() => {
     if (user?.uid) getUsers();
-  }, []);
+  }, [user]);
 
   const getUsers = async () => {
-    console.log(user);
     const q = query(
       userRef,
       where("userId", "!=", user?.uid),
@@ -35,9 +35,9 @@ const HomeScreen = () => {
   return (
     <View className="bg-white flex-1">
       <StatusBar barStyle="dark-content" />
-
+      <Header />
       {users.length > 0 ? (
-        <ChatList users={users} />
+        <ChatList users={users} currentUser={user} />
       ) : (
         <View className="flex items-center" style={{ top: hp(30) }}>
           <Loading size={hp(20)} />

@@ -8,12 +8,7 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { blurhash } from "../utils/common";
 import { useAuth } from "../context/authContext";
-import {
-  Menu,
-  MenuOptions,
-  MenuOption,
-  MenuTrigger,
-} from "react-native-popup-menu";
+import { Menu, MenuOptions, MenuTrigger } from "react-native-popup-menu";
 import { MenuItem } from "./CustomeMenuItems";
 import { AntDesign, Feather } from "@expo/vector-icons";
 

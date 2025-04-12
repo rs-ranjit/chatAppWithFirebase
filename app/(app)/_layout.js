@@ -8,7 +8,7 @@ export default function _layout() {
   return (
     <Stack
       screenOptions={{
-        header: () => <HomeHeader />,
+        headerShown: false,
       }}
     />
   );
